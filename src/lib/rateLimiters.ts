@@ -40,3 +40,9 @@ export const authLimiter = new RateLimiter({
     windowMs: 60_000,
     maxRequests: 10,
 });
+
+/** /api/thing2/pkpass — pass signing does real crypto work per request. */
+export const pkpassLimiter = new RateLimiter({
+    windowMs: 60_000,
+    maxRequests: 20,
+});

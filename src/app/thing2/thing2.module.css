@@ -1,0 +1,460 @@
+/* Thing 2 — picture to Apple Wallet pass. Vanilla CSS module, no Tailwind. */
+
+.page {
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 2.5rem 1.5rem 4rem;
+    background: var(--bg-primary, #0a0a0f);
+    color: var(--text-primary, #e5e5e5);
+    font-family: var(--font-ui, system-ui, sans-serif);
+}
+
+.pageHeader {
+    max-width: 1080px;
+    margin: 0 auto 2rem;
+}
+
+.pageTitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.35rem;
+}
+
+.pageSubtitle {
+    margin: 0;
+    color: var(--text-secondary, #8a8a99);
+    font-size: 0.95rem;
+}
+
+.layout {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- Editor ---------- */
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+}
+
+.section {
+    background: var(--bg-secondary, #13131a);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sectionTitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #8a8a99);
+    margin: 0;
+}
+
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.75rem 1rem;
+    border: 1px dashed var(--border-medium, rgba(255, 255, 255, 0.18));
+    background: var(--bg-tertiary, rgba(255, 255, 255, 0.03));
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropzone:hover {
+    border-color: var(--border-bright, rgba(255, 255, 255, 0.35));
+}
+
+.fileInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dropzoneText {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary, #8a8a99);
+    margin-bottom: 0.35rem;
+}
+
+.label em {
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0.6;
+}
+
+.hint {
+    font-size: 0.78rem;
+    color: var(--text-secondary, #8a8a99);
+    margin: 0.35rem 0 0;
+    line-height: 1.5;
+}
+
+.error {
+    font-size: 0.82rem;
+    color: var(--accent-red, #e05252);
+    margin: 0.5rem 0 0;
+}
+
+.field {
+    display: block;
+}
+
+.field input[type="text"],
+.field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.55rem 0.7rem;
+    background: var(--bg-primary, #0a0a0f);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+    color: inherit;
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--border-bright, rgba(255, 255, 255, 0.35));
+}
+
+.fieldRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.fieldRow input {
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0.5rem 0.6rem;
+    background: var(--bg-primary, #0a0a0f);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+    color: inherit;
+    font: inherit;
+    font-size: 0.88rem;
+}
+
+.rowButton {
+    background: transparent;
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+    color: var(--text-secondary, #8a8a99);
+    cursor: pointer;
+    padding: 0 0.7rem;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.rowButton:hover {
+    color: var(--accent-red, #e05252);
+}
+
+.choiceGroup {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.choiceGroup legend {
+    padding: 0;
+}
+
+.choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+.sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.slider input[type="range"] {
+    width: 100%;
+}
+
+.colourRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.colour input[type="color"] {
+    width: 3.5rem;
+    height: 2.1rem;
+    padding: 0;
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+    background: transparent;
+    cursor: pointer;
+}
+
+/* ---------- Buttons ---------- */
+
+.primaryButton,
+.secondaryButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.primaryButton {
+    margin-top: 1rem;
+    background: rgb(var(--accent-rgb, 200, 30, 30));
+    color: #fff;
+}
+
+.secondaryButton {
+    margin-top: 0.6rem;
+    background: transparent;
+    border-color: var(--border-medium, rgba(255, 255, 255, 0.18));
+    color: inherit;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.secondaryButton:not(:disabled):hover {
+    border-color: var(--border-bright, rgba(255, 255, 255, 0.35));
+}
+
+/* ---------- Notice ---------- */
+
+.notice {
+    max-width: 1080px;
+    margin: 0 auto 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--accent-amber, #d99a2b);
+    background: rgba(217, 154, 43, 0.08);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.notice p {
+    margin: 0.5rem 0 0;
+}
+
+.notice ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.notice code {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.85em;
+}
+
+/* ---------- Preview ---------- */
+
+.previewColumn {
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.previewCard {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+.previewHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.85rem;
+}
+
+.previewIcon {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+}
+
+.previewIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.previewLogoText {
+    font-size: 0.85rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.previewStrip {
+    position: relative;
+    aspect-ratio: 375 / 123;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.previewStrip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.previewStripHeadline {
+    position: absolute;
+    left: 0.85rem;
+    bottom: 0.6rem;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+.previewGenericBody {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0.85rem 0.5rem;
+}
+
+.previewGenericText {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.previewThumbnail {
+    width: 74px;
+    height: 74px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.previewThumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.previewEmpty {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.previewBody {
+    padding: 0.75rem 0.85rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.previewFieldRow {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.previewField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.previewFieldLabel {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.previewFieldValue {
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.previewBarcode {
+    background: #fff;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.previewBarcodeGrid {
+    width: 76px;
+    height: 76px;
+    background:
+        repeating-linear-gradient(90deg, #111 0 4px, #fff 4px 8px),
+        repeating-linear-gradient(0deg, #111 0 4px, #fff 4px 8px);
+    background-blend-mode: difference;
+}
+
+.previewBarcodeCaption {
+    font-size: 0.62rem;
+    color: #555;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
